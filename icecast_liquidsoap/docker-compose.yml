@@ -1,0 +1,26 @@
+version: "3.9"
+
+services:
+  icecast:
+    image: fill205/icecast_liquidsoap:latest
+    container_name: icecast
+    hostname: icecast
+    ports:
+      - "8000:8000"
+    restart: always
+    volumes:
+      - data:/etc/icecast2/
+      - liquidsoap_content:/home/radio/webradio/content
+      - liquidsoap_data:/home/radio/webradio
+      - ssh_data:/etc/ssh
+
+volumes:
+  data: {}
+  liquidsoap_content: {}
+  liquidsoap_data: {}
+  ssh_data: {}
+
+networks:
+     default:
+      external: 
+        name: local
